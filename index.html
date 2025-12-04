@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raja Second - Toko Elektronik Terpercaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              primary: "#3b82f6",
+              secondary: "#1e40af",
+              accent: "#f59e0b",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .product-card:hover {
+        transform: translateY(-10px);
+        transition: transform 0.3s ease;
+      }
+      .hero-gradient {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      }
+      /* Animasi untuk mobile menu */
+      .mobile-menu-enter {
+        max-height: 0;
+        opacity: 0;
+      }
+      .mobile-menu-enter-active {
+        max-height: 300px;
+        opacity: 1;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+      }
+      .mobile-menu-exit {
+        max-height: 300px;
+        opacity: 1;
+      }
+      .mobile-menu-exit-active {
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="font-poppins bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <i class="fas fa-laptop-code text-3xl text-primary mr-2"></i>
+            <!-- <div class="text-2xl font-bold text-gray-800">
+              <div class="">Raja</div>
+              <div class="text-yellow-400">Second</div>
+            </div> -->
+            <div class="text-2xl font-bold text-gray-800">
+              <div class="m-0 p-0 leading-none">Raja</div>
+              <div class="m-0 p-0 leading-none text-yellow-400">Second</div>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-gray-700 hover:text-primary font-medium"
+              >Beranda</a
+            >
+            <a
+              href="#products"
+              class="text-gray-700 hover:text-primary font-medium"
+              >Produk</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-700 hover:text-primary font-medium"
+              >Kontak</a
+            >
+            <!-- <a
+              href="#cart"
+              class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition"
+            >
+              <i class="fas fa-shopping-cart mr-2"></i>Keranjang
+            </a> -->
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-700">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden py-4 border-t">
+          <div class="flex flex-col space-y-4">
+            <a href="#home" class="text-gray-700 hover:text-primary font-medium"
+              >Beranda</a
+            >
+            <a
+              href="#products"
+              class="text-gray-700 hover:text-primary font-medium"
+              >Produk</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-700 hover:text-primary font-medium"
+              >Kontak</a
+            >
+            <!-- <a
+              href="#cart"
+              class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition text-center"
+            >
+              <i class="fas fa-shopping-cart mr-2"></i>Keranjang
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <img src="/assets/hero_section.jpeg" alt="hero section" class=""> -->
+    <!-- Hero Section -->
+    <!-- <section id="home" class="hero-gradient text-white py-12 md:py-24">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-12 md:mb-0">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+              Teknologi Terkini untuk Produktivitas Anda
+            </h1>
+            <p class="text-base sm:text-lg mb-8 text-blue-100">
+              Temukan produk elektronik terbaru dengan kualitas terbaik dan
+              harga kompetitif. Kami menyediakan laptop, smartphone, aksesori,
+              dan banyak lagi.
+            </p>
+            <a
+              href="#products"
+              class="bg-accent text-gray-900 font-semibold px-6 sm:px-8 py-3 rounded-lg hover:bg-yellow-500 transition inline-block text-sm sm:text-base"
+            >
+              Lihat Produk <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+          <div class="md:w-1/2 flex justify-center mt-8 md:mt-0">
+            <div class="relative w-full max-w-md">
+              <div
+                class="bg-white/10 backdrop-blur-sm rounded-2xl p-2 transform rotate-3"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                  alt="Laptop and gadgets"
+                  class="rounded-xl shadow-2xl transform -rotate-3 w-full h-auto"
+                />
+              </div>
+              <div
+                class="absolute -bottom-4 -right-4 bg-white text-gray-800 p-4 rounded-xl shadow-lg hidden sm:block"
+              >
+                <div class="text-2xl font-bold">+500</div>
+                <div class="text-sm">Produk Tersedia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Hero Section -->
+    <section id="home" class="relative text-white overflow-hidden">
+      <!-- Background overlay untuk teks lebih terbaca -->
+      <div></div>
+
+      <!-- Gambar Hero -->
+      <div class="container mx-auto relative z-0">
+        <img
+          src="/assets/hero_section.jpeg"
+          alt="Hero Section"
+          class="w-full h-auto object-cover shadow-2xl"
+        />
+      </div>
+        <a
+          href="#products"
+          class="animate-bounce inline-block p-3 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition"
+        >
+          <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </a>
+      </div> -->
+    </section>
+    <!-- Product Catalog -->
+    <section id="products" class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-8 md:mb-12">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+          >
+            Katalog Produk Kami
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+            Temukan berbagai pilihan produk elektronik berkualitas dengan harga
+            terbaik. Kami selalu update dengan teknologi terkini.
+          </p>
+        </div>
+
+        <!-- Product Filters -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 md:mb-10">
+          <button
+            class="px-4 sm:px-5 py-2 bg-primary text-white rounded-lg font-medium text-sm sm:text-base"
+          >
+            Semua
+          </button>
+          <button
+            class="px-4 sm:px-5 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 text-sm sm:text-base"
+          >
+            Laptop
+          </button>
+          <button
+            class="px-4 sm:px-5 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 text-sm sm:text-base"
+          >
+            Smartphone
+          </button>
+          <button
+            class="px-4 sm:px-5 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 text-sm sm:text-base"
+          >
+            Aksesori
+          </button>
+          <button
+            class="px-4 sm:px-5 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium hover:bg-gray-300 text-sm sm:text-base"
+          >
+            Gaming
+          </button>
+        </div>
+
+        <!-- Product Grid -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <!-- Product 1 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                alt="Laptop Ultrabook"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+              <div
+                class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-accent text-gray-900 font-bold px-2 sm:px-3 py-1 rounded text-xs sm:text-sm"
+              >
+                Terlaris
+              </div>
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Laptop Ultrabook Pro
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Laptop tipis dengan performa tinggi, cocok untuk pekerjaan dan
+                multimedia.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >4.5 (128 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 12.499.000</span
+                  >
+                  <div class="text-gray-500 line-through text-xs sm:text-sm">
+                    Rp 14.999.000
+                  </div>
+                </div>
+                <a href="https://shopee.co.id/HP-14-EM0167AU-EM0168AU-R7-7730U-16GB-512GB-14-Fhd-Ips-W11-Backlit-i.148846460.6232687188?extraParams=%7B%22display_model_id%22%3A211482228392%2C%22model_selection_logic%22%3A3%7D&sp_atk=12719535-2545-4732-82d2-8d5ca884a82c&xptdk=12719535-2545-4732-82d2-8d5ca884a82c"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+                alt="Smartphone"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+              <div
+                class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-red-500 text-white font-bold px-2 sm:px-3 py-1 rounded text-xs sm:text-sm"
+              >
+                Hemat 15%
+              </div>
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Smartphone X Pro
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Smartphone flagship dengan kamera 108MP dan baterai tahan lama.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >4.0 (96 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 8.999.000</span
+                  >
+                  <div class="text-gray-500 line-through text-xs sm:text-sm">
+                    Rp 10.599.000
+                  </div>
+                </div>
+                <a href="https://shopee.co.id/iP-17-256GB-I-512GB-Garansi-Resmi-Indonesia-i.1119863145.40923214942?extraParams=%7B%22display_model_id%22%3A276888173002%2C%22model_selection_logic%22%3A3%7D&sp_atk=63e9307c-4f74-423c-bfe5-f5266f1cdc87&xptdk=63e9307c-4f74-423c-bfe5-f5266f1cdc87"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Headphone"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Headphone Wireless Premium
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Headphone dengan noise cancellation dan kualitas suara tinggi.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >5.0 (75 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 2.499.000</span
+                  >
+                </div>
+                <a href="https://shopee.co.id/NIKE-Air-Jordan-13-Retro-White-Midnight-Navy-Sepatu-Sneakers-Pria-414571140-i.28956117.26491066550?extraParams=%7B%22display_model_id%22%3A296424680894%2C%22model_selection_logic%22%3A3%7D&sp_atk=1a603cc6-96c8-48bc-9422-c36fa4d3c70c&xptdk=1a603cc6-96c8-48bc-9422-c36fa4d3c70c"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                alt="Kamera"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+              <div
+                class="absolute top-3 left-3 sm:top-4 sm:left-4 bg-green-500 text-white font-bold px-2 sm:px-3 py-1 rounded text-xs sm:text-sm"
+              >
+                Baru
+              </div>
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Kamera Mirrorless Profesional
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Kamera dengan sensor full-frame dan stabilisasi gambar 5-axis.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >4.5 (42 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 21.999.000</span
+                  >
+                </div>
+                <a href="https://shopee.co.id/Canon-EOS-R50-Body-R-50-kit-18-45mm-Double-Kit-55-210mm-RESMI-i.41986340.21578704144?extraParams=%7B%22display_model_id%22%3A214221889161%2C%22model_selection_logic%22%3A3%7D&sp_atk=4f92b940-ddde-43c3-837f-004d91c69752&xptdk=4f92b940-ddde-43c3-837f-004d91c69752"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
+                alt="Smart Watch"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Smart Watch Series 5
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Smartwatch dengan monitor detak jantung, GPS, dan tahan air.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >4.0 (63 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 3.799.000</span
+                  >
+                  <div class="text-gray-500 line-through text-xs sm:text-sm">
+                    Rp 4.299.000
+                  </div>
+                </div>
+                <a href="https://shopee.co.id/Apple-Watch-Ultra-with-Ocean-Band-i.1269032741.24681585342?extraParams=%7B%22display_model_id%22%3A108372457530%2C%22model_selection_logic%22%3A3%7D&sp_atk=a20783af-bb04-4a79-b4cf-65febf5c8837&xptdk=a20783af-bb04-4a79-b4cf-65febf5c8837"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div
+            class="product-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+          >
+            <div class="relative overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1142&q=80"
+                alt="Tablet"
+                class="w-full h-48 sm:h-56 object-cover hover:scale-105 transition duration-500"
+              />
+            </div>
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                Monitor Pro dengan Stylus
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                Monitor dengan layar 12.9 inch, cocok untuk desain dan
+                produktivitas.
+              </p>
+              <div class="flex items-center mb-4">
+                <div class="flex text-accent text-sm sm:text-base">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span class="ml-2 text-gray-600 text-xs sm:text-sm"
+                  >5.0 (37 ulasan)</span
+                >
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3"
+              >
+                <div>
+                  <span class="text-xl sm:text-2xl font-bold text-gray-800"
+                    >Rp 15.999.000</span
+                  >
+                </div>
+                <a href="https://shopee.co.id/XPPen-Artist-22-Plus-Pen-Display-22inch-Drawing-Monitor-With-16k-Pen-With-Fully-Laminated-Screen-i.1064315260.25357334185?extraParams=%7B%22display_model_id%22%3A197261180207%2C%22model_selection_logic%22%3A3%7D&sp_atk=b5d33077-e9cc-4abf-b12b-87a793db09af&xptdk=b5d33077-e9cc-4abf-b12b-87a793db09af"
+                  class="bg-primary text-white px-4 sm:px-5 py-2 rounded-lg hover:bg-secondary transition flex items-center justify-center text-sm sm:text-base"
+                >
+                  <i class="fas fa-cart-plus mr-2"></i> Beli
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-8 md:mt-12">
+          <a
+            href="#"
+            class="bg-gray-800 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg hover:bg-gray-900 transition inline-block text-sm sm:text-base"
+          >
+            Lihat Semua Produk <i class="fas fa-chevron-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contact" class="py-12 md:py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-8 md:mb-12">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+          >
+            Hubungi Kami
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+            Punya pertanyaan atau butuh bantuan? Tim kami siap membantu Anda.
+          </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8 md:gap-12">
+          <!-- Contact Info -->
+          <div class="lg:w-2/5">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                Informasi Kontak
+              </h3>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                    <i
+                      class="fas fa-map-marker-alt text-primary text-lg md:text-xl"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">
+                      Alamat
+                    </h4>
+                    <p class="text-gray-600 text-sm md:text-base">
+                      Jl. Teknologi No. 123, Jakarta Selatan, Indonesia
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                    <i
+                      class="fas fa-phone-alt text-primary text-lg md:text-xl"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">
+                      Telepon
+                    </h4>
+                    <p class="text-gray-600 text-sm md:text-base">
+                      +62 21 1234 5678
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                    <i
+                      class="fas fa-envelope text-primary text-lg md:text-xl"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">
+                      Email
+                    </h4>
+                    <p class="text-gray-600 text-sm md:text-base">
+                      info@techstore.id
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                    <i class="fas fa-clock text-primary text-lg md:text-xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">
+                      Jam Operasional
+                    </h4>
+                    <p class="text-gray-600 text-sm md:text-base">
+                      Senin - Jumat: 08:00 - 17:00<br />Sabtu: 09:00 - 15:00
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8">
+                <h4 class="font-bold text-gray-800 mb-4 text-sm md:text-base">
+                  Ikuti Kami
+                </h4>
+                <div class="flex space-x-4">
+                  <a
+                    href="#"
+                    class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition"
+                  >
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-pink-600 text-white p-3 rounded-lg hover:bg-pink-700 transition"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-blue-700 text-white p-3 rounded-lg hover:bg-blue-800 transition"
+                  >
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:w-3/5">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                Kirim Pesan
+              </h3>
+              <form id="contact-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="name"
+                      class="block text-gray-700 font-medium mb-2 text-sm md:text-base"
+                      >Nama Lengkap</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base"
+                      placeholder="Masukkan nama Anda"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="email"
+                      class="block text-gray-700 font-medium mb-2 text-sm md:text-base"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base"
+                      placeholder="nama@email.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="mt-6">
+                  <label
+                    for="subject"
+                    class="block text-gray-700 font-medium mb-2 text-sm md:text-base"
+                    >Subjek</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base"
+                    placeholder="Subjek pesan Anda"
+                    required
+                  />
+                </div>
+
+                <div class="mt-6">
+                  <label
+                    for="message"
+                    class="block text-gray-700 font-medium mb-2 text-sm md:text-base"
+                    >Pesan</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="5"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm md:text-base"
+                    placeholder="Tulis pesan Anda di sini..."
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="mt-6">
+                  <button
+                    type="submit"
+                    class="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-secondary transition w-full md:w-auto text-sm md:text-base"
+                  >
+                    Kirim Pesan <i class="fas fa-paper-plane ml-2"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12"
+        >
+          <!-- Company Info -->
+          <div>
+            <div class="flex items-center mb-4">
+              <i class="fas fa-laptop-code text-3xl text-primary mr-2"></i>
+              <span class="text-2xl font-bold">TechStore</span>
+            </div>
+            <p class="text-gray-300 text-sm md:text-base mb-6">
+              TechStore adalah toko elektronik terpercaya yang menyediakan
+              produk-produk teknologi terkini dengan kualitas terbaik.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-300 hover:text-primary">
+                <i class="fab fa-facebook-f text-lg"></i>
+              </a>
+              <a href="#" class="text-gray-300 hover:text-primary">
+                <i class="fab fa-twitter text-lg"></i>
+              </a>
+              <a href="#" class="text-gray-300 hover:text-primary">
+                <i class="fab fa-instagram text-lg"></i>
+              </a>
+              <a href="#" class="text-gray-300 hover:text-primary">
+                <i class="fab fa-youtube text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-xl font-bold mb-6">Tautan Cepat</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#products"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Produk</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Kontak</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Products -->
+          <div>
+            <h3 class="text-xl font-bold mb-6">Produk</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Laptop & Komputer</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Smartphone & Tablet</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Aksesori Elektronik</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Perangkat Gaming</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-primary transition text-sm md:text-base"
+                  >Kamera & Foto</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div>
+            <h3 class="text-xl font-bold mb-6">Berlangganan</h3>
+            <p class="text-gray-300 mb-4 text-sm md:text-base">
+              Dapatkan informasi terbaru tentang produk dan penawaran spesial.
+            </p>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Email Anda"
+                class="px-4 py-3 rounded-l-lg w-full text-gray-800 text-sm md:text-base"
+              />
+              <button
+                class="bg-primary hover:bg-secondary px-4 py-3 rounded-r-lg transition text-sm md:text-base"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+            <div class="mt-8">
+              <h4 class="font-bold mb-4 text-sm md:text-base">
+                Metode Pembayaran
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <div class="bg-gray-800 p-2 rounded">
+                  <i class="fab fa-cc-visa text-lg"></i>
+                </div>
+                <div class="bg-gray-800 p-2 rounded">
+                  <i class="fab fa-cc-mastercard text-lg"></i>
+                </div>
+                <div class="bg-gray-800 p-2 rounded">
+                  <i class="fab fa-cc-paypal text-lg"></i>
+                </div>
+                <div class="bg-gray-800 p-2 rounded">
+                  <i class="fas fa-university text-lg"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p class="text-gray-400 text-sm md:text-base">
+            &copy; 2023 TechStore. All rights reserved. |
+            <a href="#" class="hover:text-primary transition"
+              >Kebijakan Privasi</a
+            >
+            |
+            <a href="#" class="hover:text-primary transition"
+              >Syarat & Ketentuan</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript untuk Mobile Menu -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        let isMenuOpen = false;
+
+        mobileMenuButton.addEventListener("click", function () {
+          isMenuOpen = !isMenuOpen;
+
+          if (isMenuOpen) {
+            mobileMenu.classList.remove("hidden");
+            mobileMenuButton.innerHTML =
+              '<i class="fas fa-times text-2xl"></i>';
+          } else {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+          }
+        });
+
+        // Tutup mobile menu saat link di klik (untuk navigasi satu halaman)
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+            isMenuOpen = false;
+          });
+        });
+
+        // Form submission handler
+        const contactForm = document.getElementById("contact-form");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Di sini biasanya akan ada kode untuk mengirim form ke server
+            // Untuk contoh ini, kita hanya akan menampilkan alert
+            alert(
+              "Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda segera."
+            );
+            contactForm.reset();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
